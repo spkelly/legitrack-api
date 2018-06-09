@@ -1,6 +1,6 @@
-let express = require('express');
-let router = express.Router();
-let searchService = require('../services/searchServices');
+const express = require('express');
+const router = express.Router();
+const searchService = require('../services/searchServices');
 
 router.get('/',searchService.getSearch);
 
