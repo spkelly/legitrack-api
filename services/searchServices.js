@@ -9,7 +9,7 @@ function fetchSearchData(term){
 }
 
 
-//fetches and sends search data to client
+// fetches and sends search data to client
 async function getSearch(req,res){
   let results = await fetchSearchData(req.query.term);
   res.json({'results':results.data.searchresult});
