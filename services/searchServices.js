@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+const testSearch = require('../test/testSearch');
 require('dotenv').config();
 
 
@@ -11,7 +11,8 @@ function fetchSearchData(term){
 
 // fetches and sends search data to client
 async function getSearch(req,res){
-  let results = await fetchSearchData(req.query.term);
+  console.log("[Fetching Search Results]: ",req.query.q);
+  let results = await fetchSearchData(req.query.q);
   res.json({'results':results.data.searchresult});
 }
 

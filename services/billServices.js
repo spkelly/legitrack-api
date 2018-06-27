@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // creates and sends a bill object to the client
 async function getBill(req,res){
-  let billData = await fetchBillData(1117006);
+  let billData = await fetchBillData(req.params.id);
   let bill = generateBill(billData.data.bill);
 
   res.json(bill);
