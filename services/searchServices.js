@@ -13,7 +13,10 @@ function fetchSearchData(term){
 async function getSearch(req,res){
   console.log("[Fetching Search Results]: ",req.query.q);
   let results = await fetchSearchData(req.query.q);
-  res.json({'results':results.data.searchresult});
+  setTimeout(()=>{
+    res.json({'results':results.data.searchresult});
+  },2000);
+  
 }
 
 
