@@ -74,12 +74,7 @@ function chartifyVotes(votes){
   return votes.map(({desc, url, state_link, ...vote})=>{
     return { 
       label: vote.date,
-      data:[  
-        vote.yea,
-        vote.nay,
-        vote.nv, 
-        vote.absent
-        ],
+      data:[ vote.yea, vote.nay, vote.nv, vote.absent],
       desc,
       url,
       state_link
@@ -98,7 +93,7 @@ function chartifyVotes(votes){
 
 // generates a bill object from the raw bill data 
 function generateBill(billData){
-
+  let votes = chartifyVotes(billData.votes);
   console.log(chartifyVotes(billData.votes));
 
   return {
@@ -106,7 +101,7 @@ function generateBill(billData){
     'title'       :billData.title,
     'number'      :billData.bill_number,
     'sponsors'    :billData.sponsors,
-    'votes'       :billData.votes,
+    'votes'       :votes,
     'status'      :billData.status,
     'description' :billData.description
   };
