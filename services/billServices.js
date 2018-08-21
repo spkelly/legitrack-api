@@ -12,6 +12,7 @@ async function getBill(req,res){
   res.json(bill);
 }
 
+
 // sends a fake bill to the client 
 // async function getFakeBill(req,res){
 //   let fakeBill= await generateFakeBill();
@@ -23,14 +24,6 @@ function fetchBillData(id){
   return axios.get(`https://api.legiscan.com/?key=${ process.env.API_KEY }&op=getBill&id=${ id }`);
 }
 
-// generates a fake bill for testing purposes
-// function generateFakeBill(){
-//   return new Promise((resolve,reject)=>{
-//     setTimeout(()=>{
-//       resolve(fakeBill);
-//     }, 500);
-//   });
-// };
 
 
 
@@ -94,18 +87,21 @@ function chartifyVotes(votes){
 // generates a bill object from the raw bill data 
 function generateBill(billData){
   let votes = chartifyVotes(billData.votes);
-  console.log(chartifyVotes(billData.votes));
 
   return {
-    'id'          :billData.bill_id,
-    'title'       :billData.title,
-    'number'      :billData.bill_number,
-    'sponsors'    :billData.sponsors,
-    'votes'       :votes,
-    'status'      :billData.status,
-    'description' :billData.description
+    'id':billData.bill_id,
+    'title':billData.title,
+    'number':billData.bill_number,
+    'sponsors':billData.sponsors,
+    'votes':votes,
+    'status':billData.status,
+    'stats':{
+      'status': billData.status,
+      'id': billData.bill_id
+    },
+  'description' :billData.description
   };
-}
+};
 
 
 
