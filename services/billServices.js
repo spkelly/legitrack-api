@@ -1,4 +1,5 @@
 const axios = require('axios');
+const he = require('he');
 // const fakeBill = require('../test/testBill');
 
 require('dotenv').config();
@@ -87,10 +88,11 @@ function chartifyVotes(votes){
 // generates a bill object from the raw bill data 
 function generateBill(billData){
   let votes = chartifyVotes(billData.votes);
+  let decodedTitle = he.decode(billData.title);
 
   return {
     'id':billData.bill_id,
-    'title':billData.title,
+    'title':decodedTitle,
     'number':billData.bill_number,
     'sponsors':billData.sponsors,
     'votes':votes,
