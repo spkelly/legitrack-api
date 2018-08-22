@@ -114,10 +114,9 @@ function generateBill(billData){
     'number':billData.bill_number,
     'sponsors':billData.sponsors,
     'votes':votes,
-    'status':status,
     'stats':{
-      'status': billData.status,
-      'id': billData.bill_id
+      'status': status,
+      'id': billData.bill_number
     },
   'description' :billData.description
   };
