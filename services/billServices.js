@@ -66,17 +66,17 @@ function fetchBillData(id){
 function mapProgress(status){
   switch(status){
     case 1:
-      return "introduced"
+      return "Introduced"
     case 2: 
-      return "enrolled"
+      return "Enrolled"
     case 3:
-      return "engrossed"
+      return "Engrossed"
     case 4:
-      return "signed"
+      return "Signed"
     case 5:
-      return "vetoed"
+      return "Vetoed"
     default:
-      return "unavaliable"
+      return "Unavaliable"
   }
 }
 
