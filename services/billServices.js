@@ -63,6 +63,23 @@ function fetchBillData(id){
 //   }
 //   ],
 
+function mapProgress(status){
+  switch(status){
+    case 1:
+      return "introduced"
+    case 2: 
+      return "enrolled"
+    case 3:
+      return "engrossed"
+    case 4:
+      return "signed"
+    case 5:
+      return "vetoed"
+    default:
+      return "unavaliable"
+  }
+}
+
 // used to make legiscan data more compatible with the ChartJs API
 function chartifyVotes(votes){
   return votes.map(({desc, url, state_link, ...vote})=>{
@@ -89,6 +106,7 @@ function chartifyVotes(votes){
 function generateBill(billData){
   let votes = chartifyVotes(billData.votes);
   let decodedTitle = he.decode(billData.title);
+  let status = mapProgress(billData.status);
 
   return {
     'id':billData.bill_id,
@@ -96,7 +114,7 @@ function generateBill(billData){
     'number':billData.bill_number,
     'sponsors':billData.sponsors,
     'votes':votes,
-    'status':billData.status,
+    'status':status,
     'stats':{
       'status': billData.status,
       'id': billData.bill_id
