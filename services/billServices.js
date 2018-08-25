@@ -9,7 +9,6 @@ require('dotenv').config();
 async function getBill(req,res){
   let billData = await fetchBillData(req.params.id);
   let bill = generateBill(billData.data.bill);
-
   res.json(bill);
 }
 
@@ -64,6 +63,7 @@ function fetchBillData(id){
 //   ],
 
 function mapProgress(status){
+  console.log("the status is number is: ", status)
   switch(status){
     case 1:
       return "Introduced"
@@ -75,6 +75,8 @@ function mapProgress(status){
       return "Signed"
     case 5:
       return "Vetoed"
+    case 6: 
+      return "Failed"
     default:
       return "Unavaliable"
   }
@@ -118,6 +120,7 @@ function generateBill(billData){
       'status': status,
       'id': billData.bill_number
     },
+    'lestEvent': billData.history[0],
   'description' :billData.description
   };
 };
